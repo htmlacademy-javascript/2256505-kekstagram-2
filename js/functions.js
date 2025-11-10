@@ -5,19 +5,44 @@ function getStringLength(string, maxLength) {
 
 getStringLength('dfdf', 4);
 
-
-function isPolindrom(string){
-  let result = '';
-  for(let i = string.length; i >= 0; i--){
-    result += string[i];
+// является ли строка полиндромом
+function isPolindrom(str) {
+  let strWithoutSpace = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== ' ') {
+      strWithoutSpace += str[i];
+    }
   }
-  console.log(result);
-  if(string.toUpperCase === result.toUpperCase){
+  let strOposit = '';
+  for (let j = strWithoutSpace.length - 1; j >= 0; j--) {
+    strOposit += strWithoutSpace[j];
+  }
+  if (strWithoutSpace.toUpperCase() === strOposit.toUpperCase()) {
     return 'is polindrom';
   }
   return 'is not polindrom';
-
 }
 
+//isPolindrom('toRot');
+isPolindrom('to R ot');
+//isPolindrom('toRo R');
 
-console.log(isPolindrom('topoty'));
+
+// получение чисел из строки
+
+function getInt(str) {
+  str = str.toString();
+  let num = '';
+  for (let i = 0; i < str.length; i++) {
+    if (!Number.isNaN(parseInt(str[i], 10))) {
+      num += parseInt(str[i], 10);
+    }
+  }
+
+  if (num === '') {
+    return NaN;
+  }
+  return num;
+}
+
+getInt('22');
