@@ -69,6 +69,7 @@ const AVATAR_ID_MAX = 6;
 
 const COMMENTS_MIN_AMOUNT = 0;
 const COMMENTS_MAX_AMOUNT = 30;
+const COMMENTS_MAX_ID = 30000;
 
 const CADRS_AMOUNT = 25;
 
@@ -90,16 +91,14 @@ const getElementArray = (array) => {
 
 //создание комментария
 const getComent = () => {
-  let comentId = 1;
+  const comentId = getRandomInteger(1, COMMENTS_MAX_ID);
   return {
-    id: comentId++,
+    id: comentId,
     avatar: `img/avatar-${getRandomInteger(AVATAR_ID_MIN_, AVATAR_ID_MAX)}.svg`,
     message: getElementArray(MESSAGES_TEXT),
     name: getElementArray(AVTOR_NAMES),
   };
 };
-
-console.log(getComent());
 
 //создаем массив комментариев
 const createComments = () => {
@@ -107,27 +106,18 @@ const createComments = () => {
   return Array.from({ length: comentAmount }, getComent);
 };
 
-console.log(createComments());
-
 // Создание карточки
 
-const createCard = () => {
-  const i = getRandomInteger(1, CADRS_AMOUNT);
-  return {
-    id: i,
-    url: `photos/${i}}.jpg`,
-    description: DESCRIPTIONS[i],
-    likes: getRandomInteger(LIKES_MIN_AMOUNT, LIKES_MAX_AMOUNT),
-    comments: createComments()
-  };
-};
-
-console.log(createCard());
+const createCard = (i) => ({
+  id: i + 1,
+  url: `photos/${i + 1}.jpg`,
+  description: DESCRIPTIONS[i],
+  likes: getRandomInteger(LIKES_MIN_AMOUNT, LIKES_MAX_AMOUNT),
+  comments: createComments()
+});
 
 //массив
-const cards = () => {
-  Array.from({ length: CADRS_AMOUNT }, createCard);
-};
-cards();
-console.log(cards());
+const cards = () => Array.from({ length: CADRS_AMOUNT }, (_, i) => createCard(i));
+const photos = cards();
+console.log(photos);
 
