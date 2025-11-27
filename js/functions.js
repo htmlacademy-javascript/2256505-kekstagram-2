@@ -46,3 +46,17 @@ function getInt(str) {
 }
 
 getInt('22');
+
+export const checkMeetingTime = (startWork, endWork, startMeeting, timeMeeting) => {
+  const hourToMinutes = (timeStr) => {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+
+  const startWorkMinutes = hourToMinutes(startWork);
+  const endWorkMinutes = hourToMinutes(endWork);
+  const meetingStartMinutes = hourToMinutes(startMeeting);
+  const meetingEndMinutes = hourToMinutes(startMeeting) + timeMeeting;
+
+  return meetingStartMinutes >= startWorkMinutes && meetingEndMinutes <= endWorkMinutes;
+};
