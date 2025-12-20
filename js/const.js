@@ -1,4 +1,7 @@
 export const STEP_COMMENTS = 5;
+export const MAX_DESCRIPTION = 140;
+export const HASHTAG_FORMULA = /^#[a-zа-я0-9]{1,19}$/i;
+export const MAX_HASHTAG_COUNT = 5;
 
 const DESCRIPTIONS = [
   'Вид на пляж отеля',
