@@ -30,6 +30,6 @@ const createCard = (i) => ({
 });
 
 //массив
-const cards = () => Array.from({ length: CADRS_AMOUNT }, (_, i) => createCard(i));
+const getCards = () => Array.from({ length: CADRS_AMOUNT }, (_, i) => createCard(i));
 
-export {cards};
+export {getCards};

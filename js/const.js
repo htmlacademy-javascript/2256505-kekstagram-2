@@ -1,4 +1,4 @@
-// Константы
+export const STEP_COMMENTS = 5;
 
 const DESCRIPTIONS = [
   'Вид на пляж отеля',
