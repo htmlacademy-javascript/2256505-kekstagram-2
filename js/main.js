@@ -3,4 +3,4 @@ import { renderCards } from './render-cards.js';
 
 const photos = getCards();
 renderCards(photos);
-
+//open and close
