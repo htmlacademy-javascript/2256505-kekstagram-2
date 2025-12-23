@@ -1,7 +1,12 @@
-import { getCards } from './data.js';
 import { renderCards } from './render-cards.js';
 import './form.js';
+import { showError } from './util.js';
+import { getData } from './api.js';
 
-const photos = getCards();
-renderCards(photos);
-
+getData()
+  .then((photos) => {
+    renderCards(photos);
+  })
+  .catch(() => {
+    showError();
+  });
