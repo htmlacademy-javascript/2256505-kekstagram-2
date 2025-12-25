@@ -1,3 +1,11 @@
+export const Filters = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
+};
+
+export const numberOfRandomItem = 10;
+
 export const SubmitCaptions = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикую...'
