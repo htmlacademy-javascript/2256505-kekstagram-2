@@ -12,6 +12,7 @@ const bodyTag = document.body;
 const closeButtonTag = formTag.querySelector('#upload-cancel');
 const imageTag = formTag.querySelector('.img-upload__preview img');
 const submitButtonTag = formTag.querySelector('#upload-submit');
+const miniImageTags = formTag.querySelectorAll('.effects__preview');
 
 const showModal = (isShown = true) => {
   if (isShown) {
@@ -35,6 +36,11 @@ const setPreview = () => {
   const file = inputFileTag.files[0];
   const fileUrl = URL.createObjectURL(file);
   imageTag.src = fileUrl;
+  miniImageTags.forEach((miniImage) => {
+    miniImage.style.backgroundImage = `url(${fileUrl})`;
+  });
+
+
 };
 
 inputFileTag.addEventListener('change', () => {
@@ -76,4 +82,4 @@ formTag.addEventListener('submit', (evt) => {
   }
 });
 
-// add
+
