@@ -4,6 +4,7 @@ import { resetEffects } from './effects.js';
 import { showPopup } from './popups.js';
 import { Popups, SubmitCaptions } from './const.js';
 import { postData } from './api.js';
+import { addEscControl, removeEscControl } from './esc-control.js';
 
 const formTag = document.querySelector('#upload-select-image');
 const inputFileTag = formTag.querySelector('#upload-file');
@@ -13,6 +14,8 @@ const closeButtonTag = formTag.querySelector('#upload-cancel');
 const imageTag = formTag.querySelector('.img-upload__preview img');
 const submitButtonTag = formTag.querySelector('#upload-submit');
 const miniImageTags = formTag.querySelectorAll('.effects__preview');
+const descriptionTag = formTag.querySelector('.text__description');
+const hashtagsTag = formTag.querySelector('.text__hashtags');
 
 const showModal = (isShown = true) => {
   if (isShown) {
@@ -23,6 +26,8 @@ const showModal = (isShown = true) => {
     bodyTag.classList.remove('modal-open');
   }
 };
+
+const canCloseModal = () => !(document.activeElement === hashtagsTag || document.activeElement === descriptionTag);
 
 const closeForm = () => {
   showModal(false);
@@ -46,11 +51,13 @@ const setPreview = () => {
 inputFileTag.addEventListener('change', () => {
   showModal();
   setPreview();
+  addEscControl(closeForm, canCloseModal);
 });
 
 closeButtonTag.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeForm();
+  removeEscControl();
 });
 
 const blockSubmitButton = (isBlocked = true) => {
@@ -70,6 +77,7 @@ formTag.addEventListener('submit', (evt) => {
           throw new Error();
         }
         closeForm();
+        removeEscControl();
         showPopup(Popups.SUCCESS);
       })
       .finally(() => {

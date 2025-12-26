@@ -1,4 +1,5 @@
 import { STEP_COMMENTS } from './const.js';
+import { addEscControl, removeEscControl } from './esc-control.js';
 
 const modalTag = document.querySelector('.big-picture');
 const imageTag = modalTag.querySelector('.big-picture__img img');
@@ -71,10 +72,14 @@ export const openModal = ({ url, description, comments, likes }) => {
   shownComments = 0;
   showModal();
   renderModal({ url, description, likes });
+  addEscControl(() => {
+    showModal(false);
+  });
 };
 
 closeButtonTag.addEventListener('click', () => {
   showModal(false);
+  removeEscControl();
 });
 
 buttonLoaderTag.addEventListener('click', () => {

@@ -70,4 +70,4 @@ pristine.addValidator(
 export const isValid = () => pristine.validate();
 export const resetValidation = () => {
   pristine.reset();
-}
+};

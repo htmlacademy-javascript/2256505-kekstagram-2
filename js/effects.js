@@ -26,8 +26,8 @@ const renderEffect = () => {
     imageTag.style.filter = '';
   } else {
     const { style, units } = EffectSettings[currentEffect];
-    imageTag.style.filter = `${style}(${valueTag.value}${units})`
-  };
+    imageTag.style.filter = `${style}(${valueTag.value}${units})`;
+  }
 };
 
 const updateSlider = () => {

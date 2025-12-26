@@ -1,4 +1,5 @@
 import { Popups } from './const.js';
+import { addEscControl, removeEscControl } from './esc-control.js';
 
 const bodyTag = document.body;
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -11,9 +12,13 @@ const popups = {
 export const showPopup = (status) => {
   const newPopup = popups[status].cloneNode(true);
   bodyTag.append(newPopup);
+  addEscControl(()=>{
+    newPopup.remove();
+  });
   newPopup.addEventListener('click', ({ target }) => {
     if (target.classList.contains(status) || target.classList.contains(`${status}__button`)) {
       newPopup.remove();
+      removeEscControl();
     }
   });
 };
